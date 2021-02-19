@@ -30,6 +30,8 @@ def main():
  result = result.replace('爆発', '')
  result = result.replace('死', '')
  result = result.replace('@', '')
+ result = result.replace('#', '')
+
  api.update_status(result)
 
 if __name__ == '__main__':
