@@ -3,18 +3,18 @@
 import tweepy
 import subprocess
 
-# 各種キーを代入する
+# Put your keys into this area
 CK=""
 CS=""
 AT=""
 AS=""
 
-# Twitterオブジェクトの生成
+# Generate Twitter objects
 auth = tweepy.OAuthHandler(CK, CS)
 auth.set_access_token(AT, AS)
 api = tweepy.API(auth)
 
-# ツイート
+# Tweet
 def res_cmd(cmd):
   return subprocess.Popen(
       cmd, stdout=subprocess.PIPE,
@@ -22,6 +22,7 @@ def res_cmd(cmd):
 
 def main():
  cmd = ("python3 text_generator.py")
+ # Remove risky words from result
  result = res_cmd(cmd)
  result = result.decode()
  result = result.replace('[tweet] ', '')
