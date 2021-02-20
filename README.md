@@ -1,9 +1,8 @@
 # markov-text-generator
 Generate tweets like yours by using Markov-chains.
 
-## Requirements
-Install packages listed below.
-- Python 3
+## Dependencies
+- Python 3.x
 - pandas
 - Mecab
 - mecab-python3
@@ -16,7 +15,7 @@ Install packages listed below.
 1. Put `tweets.csv` into this repository.
 1. Copy `.env.sample` as `.env`.
 1. Put your tokens related to Twitter into `.env`. (You can get one from [Developer Portal](https://developer.twitter.com/en/portal/dashboard).)
-1. (Optional: Edit `banned.json` to add / remove words.)
+1. (Optional: Edit `banned.json` to add / remove banned words.)
 
 ## Run
 ```
