@@ -32,3 +32,6 @@ This definition make this bot run every 20 minutes. (`*:00`, `*:20`, `*:40`)
 
 ## Example
 - [@yuderobot](https://twitter.com/yuderobot)
+
+## License
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
