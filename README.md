@@ -26,7 +26,7 @@ $ python3 run.py
 ### Running this bot regularly
 Use [crontab](https://linuxjm.osdn.jp/html/cron/man5/crontab.5.html) to run this bot regularly.  
 #### Example
-`*/20 * * * * /usr/bin/python3 /path/to/your/run.py`  
+`*/20 * * * * cd /path/to/your/markov-tweet; /usr/bin/python3 /path/to/your/run.py`  
 This definition make this bot run every 20 minutes. (`*:00`, `*:20`, `*:40`)
 
 ## References
