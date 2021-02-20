@@ -1,4 +1,4 @@
-# markov-text-generator
+# markov-tweet
 Automatically generate and tweet sentences like yours by using Markov-chains.
 
 ## Dependencies
