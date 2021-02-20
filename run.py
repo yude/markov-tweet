@@ -26,6 +26,16 @@ def res_cmd(cmd):
       cmd, stdout=subprocess.PIPE,
       shell=True).communicate()[0]
 
+# Remove risky words from result
+def remover(result):
+  # Load banned.json
+  json_open = open('banned.json', 'r')
+  json_load = json.load(json_open)
+  # Delete detected words from original sentences
+  for w in json_load['words']:
+    result = result.replace(w, '')
+  return result
+
 def main():
   # Get original sentences generated from markov-chains
   ## Run text_generator.py to get sentence.
@@ -35,12 +45,7 @@ def main():
   result = result.decode()
 
   # Remove risky words from result
-  ## Load banned.json
-  json_open = open('banned.json', 'r')
-  json_load = json.load(json_open)
-  ## Delete detected words from original sentences
-  for w in json_load['words']:
-    result = result.replace(w, '')
+  result = remover(result)
 
   # Call Twitter API to tweet
   api.update_status(result)
