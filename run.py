@@ -7,7 +7,6 @@ import os
 from os.path import join, dirname
 from dotenv import load_dotenv
 
-
 # Import keys from .env
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -21,25 +20,30 @@ auth = tweepy.OAuthHandler(CK, CS)
 auth.set_access_token(AT, AS)
 api = tweepy.API(auth)
 
-# Tweet
+# Run generator
 def res_cmd(cmd):
   return subprocess.Popen(
       cmd, stdout=subprocess.PIPE,
       shell=True).communicate()[0]
 
 def main():
- cmd = ("python3 text_generator.py")
- # Remove risky words from result
- result = res_cmd(cmd)
- result = result.decode()
- result = result.replace('殺', '')
- result = result.replace('爆破', '')
- result = result.replace('爆発', '')
- result = result.replace('死', '')
- result = result.replace('@', '')
- result = result.replace('#', '')
+  # Get original sentences generated from markov-chains
+  ## Run text_generator.py to get sentence.
+  cmd = ("python3 text_generator.py")
+  ## Put the generated sentence into 'result' variable
+  result = res_cmd(cmd)
+  result = result.decode()
 
- api.update_status(result)
+  # Remove risky words from result
+  ## Load banned.json
+  json_open = open('banned.json', 'r')
+  json_load = json.load(json_open)
+  ## Delete detected words from original sentences
+  for w in json_load['words']:
+    result = result.replace(w, '')
+
+  # Call Twitter API to tweet
+  api.update_status(result)
 
 if __name__ == '__main__':
   main()
