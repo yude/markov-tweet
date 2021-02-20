@@ -1,5 +1,5 @@
 # markov-text-generator
-Generate tweets like yours by using Markov-chains.
+Automatically generate and tweet sentences like yours by using Markov-chains.
 
 ## Dependencies
 - Python 3.x
