@@ -1,31 +1,26 @@
 # markov-text-generator
-マルコフ連鎖を使って自分のツイートっぽい文章を生成する
+Generate tweets like yours by using Markov-chains.
 
-## 前提
-
-以下のソフトウェアがインストール済であること。
-
+## Requirements
 - Python 3
 - pandas
 - Mecab
 - mecab-python3
 
-## 準備
+## Setup
+1. Download your tweets from Twitter (Download an archive of your data).
+1. Convert `tweets.js` into `tweets.csv` by using [Twitter archive JS to CSV converter](http://tweetjstocsv.glitch.me/)
+1. Put `tweets.csv` into this repository.
 
-Twitterの公式サイトから、自分のツイートをダウンロードしておく。
-その zip ファイルを解凍すると、tweets.csv というファイルが現れるので、
-それをこのプロジェクトのあるディレクトリに置いておく。
-
-## 実行
-
+## Run
 ```
-$ python text_generator.py
+$ python3 run.py
 ```
+Use crontab in order to run this bot regularly.
+Example: `*/20 * * * * /usr/bin/python3 /path/to/your/run.py`
 
-## 参考
-
+## References
 - https://github.com/o-tomox/TextGenerator
 
-アルゴリズムについてはこのコードに基づいている。
-コードの一部については、そのまま利用している部分がある。
-ただし、全体の構成は私が大幅に変更した。
+## Example
+- [@yuderobot](https://twitter.com/yuderobot)
