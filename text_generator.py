@@ -11,7 +11,7 @@ tagger = MeCab.Tagger('-Ochasen')
 
 def read_tweets():
     df = pd.read_csv('tweets.csv')
-    tweets = df['text']
+    tweets = df['full_text']
     return "。".join(tweets)
 
 
@@ -100,12 +100,12 @@ def create_sentence(triplets):
     while triplet[2] != '__E__':
         triplet = random_triplet(triplets, triplet[1:3])
         ms.append(triplet[1])
-    return ''.join(ms) + '。'
+    return ''.join(ms) + ' '
 
 
 def main():
     triplets = load_or_create_triplets()
-    n = 20
+    n = 2
     for i in range(n):
         try:
             print(create_sentence(triplets))
