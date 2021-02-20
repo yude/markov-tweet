@@ -12,13 +12,15 @@ Install packages listed below.
 1. Download your tweets from Twitter (Download an archive of your data).
 1. Convert `tweets.js` into `tweets.csv` by using [Twitter archive JS to CSV converter](http://tweetjstocsv.glitch.me/).
 1. Put `tweets.csv` into this repository.
+1. Put your tokens related to Twitter into `.env`. (You can get one from [Developer Portal](https://developer.twitter.com/en/portal/dashboard).)
+1. (Optional: Edit `banned.json` to add / remove words.)
 
 ## Run
 ```
 $ python3 run.py
 ```
 ### Running this bot regularly
-Use crontab to run this bot regularly.  
+Use [crontab](https://linuxjm.osdn.jp/html/cron/man5/crontab.5.html) to run this bot regularly.  
 #### Example
 `*/20 * * * * /usr/bin/python3 /path/to/your/run.py`  
 This definition make this bot run every 20 minutes. (`*:00`, `*:20`, `*:40`)
