@@ -2,6 +2,7 @@
 Generate tweets like yours by using Markov-chains.
 
 ## Requirements
+Install packages listed below.
 - Python 3
 - pandas
 - Mecab
@@ -9,15 +10,18 @@ Generate tweets like yours by using Markov-chains.
 
 ## Setup
 1. Download your tweets from Twitter (Download an archive of your data).
-1. Convert `tweets.js` into `tweets.csv` by using [Twitter archive JS to CSV converter](http://tweetjstocsv.glitch.me/)
+1. Convert `tweets.js` into `tweets.csv` by using [Twitter archive JS to CSV converter](http://tweetjstocsv.glitch.me/).
 1. Put `tweets.csv` into this repository.
 
 ## Run
 ```
 $ python3 run.py
 ```
-Use crontab in order to run this bot regularly.  
-Example: `*/20 * * * * /usr/bin/python3 /path/to/your/run.py`
+### Running this bot regularly
+Use crontab to run this bot regularly.  
+#### Example
+`*/20 * * * * /usr/bin/python3 /path/to/your/run.py`  
+This definition make this bot run every 20 minutes. (`*:00`, `*:20`, `*:40`)
 
 ## References
 - https://github.com/o-tomox/TextGenerator
