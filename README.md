@@ -16,7 +16,7 @@ Generate tweets like yours by using Markov-chains.
 ```
 $ python3 run.py
 ```
-Use crontab in order to run this bot regularly.
+Use crontab in order to run this bot regularly.  
 Example: `*/20 * * * * /usr/bin/python3 /path/to/your/run.py`
 
 ## References
