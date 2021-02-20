@@ -6,6 +6,7 @@ Generate tweets like yours by using Markov-chains.
 - pandas
 - Mecab
 - mecab-python3
+- tweepy
 
 ## Setup
 1. Install Python 3.x, MeCab in the way of your environment.
