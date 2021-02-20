@@ -12,6 +12,7 @@ Generate tweets like yours by using Markov-chains.
 1. Run `pip install -r requirements.txt` to install depending Python packages.
 1. Download your tweets from Twitter (Download an archive of your data).
 1. Convert `tweets.js` into `tweets.csv` by using [Twitter archive JS to CSV converter](http://tweetjstocsv.glitch.me/).
+Warning: Don't forget to rename `.csv` file!
 1. Put `tweets.csv` into this repository.
 1. Copy `.env.sample` as `.env`.
 1. Put your tokens related to Twitter into `.env`. (You can get one from [Developer Portal](https://developer.twitter.com/en/portal/dashboard).)
