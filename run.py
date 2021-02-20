@@ -2,12 +2,19 @@
 
 import tweepy
 import subprocess
+import json
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
 
-# Put your keys into this area
-CK=""
-CS=""
-AT=""
-AS=""
+
+# Import keys from .env
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+CK = os.environ.get("CK")
+CS = os.environ.get("CS")
+AT = os.environ.get("AT")
+AS = os.environ.get("AS")
 
 # Generate Twitter objects
 auth = tweepy.OAuthHandler(CK, CS)
@@ -25,7 +32,6 @@ def main():
  # Remove risky words from result
  result = res_cmd(cmd)
  result = result.decode()
- result = result.replace('[tweet] ', '')
  result = result.replace('殺', '')
  result = result.replace('爆破', '')
  result = result.replace('爆発', '')
