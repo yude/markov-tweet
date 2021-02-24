@@ -23,6 +23,21 @@ Warning: Don't forget to rename `.csv` file!
 ```
 $ python3 run.py
 ```
+
+### Change settings
+#### Remove RT and replies from source
+1. If you already run this bot, please delete `triplets.pkl`.
+1. Run `python3 remove_rt_and_reply.py` on this repository.  
+   Warning: Make sure you have `tweets.csv` inside the bot directory!
+1. Rename `tweets.csv` as `tweets.csv.bak`.
+1. Rename `tweets_processed.csv` as `tweets.csv`
+1. Run `python3 run.py`
+
+#### Change the number of sentences
+1. Open `.env` and change the value of `N`.
+1. Run `python3 run.py`
+
+
 ### Running this bot regularly
 Use [crontab](https://linuxjm.osdn.jp/html/cron/man5/crontab.5.html) to run this bot regularly.  
 #### Example
