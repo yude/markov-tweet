@@ -11,7 +11,8 @@ tagger = MeCab.Tagger('-Ochasen')
 
 def read_tweets():
     df = pd.read_csv('tweets.csv')
-    tweets = df[~df['full_text'].str.contains('RT')]
+#    tweets = df[~df['full_text'].str.contains('RT')]
+    tweets = df['full_text']
     return "。".join(tweets)
 
 
