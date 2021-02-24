@@ -12,8 +12,6 @@ dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 N = os.environ.get("N")
 
-print("N = ", N)
-
 def read_tweets():
     df = pd.read_csv('tweets.csv')
 #    tweets = df[~df['full_text'].str.contains('RT')]
