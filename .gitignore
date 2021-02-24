@@ -103,3 +103,4 @@ ENV/
 # applicaton specific
 tweets.csv
 triplets.pkl
+.run.py.swp
