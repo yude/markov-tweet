@@ -109,7 +109,7 @@ def main():
     n = 1
     for i in range(n):
         try:
-            print(create_sentence(triplets))
+            print(create_sentence(triplets), end='')
         except:
             pass
 
