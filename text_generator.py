@@ -105,7 +105,7 @@ def create_sentence(triplets):
 
 def main():
     triplets = load_or_create_triplets()
-    n = 2
+    n = 1
     for i in range(n):
         try:
             print(create_sentence(triplets))
