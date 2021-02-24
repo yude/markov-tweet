@@ -4,16 +4,21 @@ import re
 import pickle
 import random
 import MeCab
-
+from os.path import join, dirname
+from dotenv import load_dotenv
 
 tagger = MeCab.Tagger('-Ochasen')
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+N = os.environ.get("N")
 
+print("N = ", N)
 
 def read_tweets():
     df = pd.read_csv('tweets.csv')
 #    tweets = df[~df['full_text'].str.contains('RT')]
     tweets = df['full_text']
-    return "。".join(tweets)
+    return "".join(tweets)
 
 
 def normalize_text(text):
@@ -106,13 +111,12 @@ def create_sentence(triplets):
 
 def main():
     triplets = load_or_create_triplets()
-    n = 1
+    n = int(N)
     for i in range(n):
         try:
             print(create_sentence(triplets), end='')
         except:
             pass
-
 
 if __name__ == '__main__':
     main()
