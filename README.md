@@ -4,7 +4,7 @@ Automatically generate and tweet sentences like your daily tweets by using Marko
 ## Dependencies
 - Python 3.x
 - pandas
-- Mecab
+- MeCab
 - mecab-python3
 - tweepy
 
@@ -30,12 +30,12 @@ $ python3 run.py
 1. Run `python3 remove_rt_and_reply.py` on this repository.  
    Warning: Make sure you have `tweets.csv` inside the bot directory!
 1. Rename `tweets.csv` as `tweets.csv.bak`.
-1. Rename `tweets_processed.csv` as `tweets.csv`
-1. Run `python3 run.py`
+1. Rename `tweets_processed.csv` as `tweets.csv`.
+1. Run `python3 run.py`.
 
 #### Change the number of sentences
 1. Open `.env` and change the value of `N`.
-1. Run `python3 run.py`
+1. Run `python3 run.py`.
 
 
 ### Running this bot regularly
