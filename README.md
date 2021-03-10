@@ -1,5 +1,5 @@
 # markov-tweet
-Automatically generate and tweet sentences like your daily tweets by using Markov-chains.
+Automatically generate and tweet sentences like your daily tweets by using markov-chain.
 
 ## Dependencies
 - Python 3.x
