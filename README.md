@@ -17,7 +17,8 @@ Warning: Don't forget to rename `.csv` file!
 1. Put `tweets.csv` into this repository.
 1. Copy `.env.sample` as `.env`.
 1. Put your tokens related to Twitter into `.env`. (You can get one from [Developer Portal](https://developer.twitter.com/en/portal/dashboard).)
-1. (Optional: Edit `banned.json` to add / remove banned words.)
+1. Copy `banned.json.sample` as `banned.json`.
+1. Configure banned words in `banned.json` as you like.
 
 ## Run
 ```
