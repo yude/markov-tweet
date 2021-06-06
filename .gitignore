@@ -106,3 +106,4 @@ triplets.pkl
 .run.py.swp
 tweets_processed.csv
 banned.json
+tweets.csv.old
