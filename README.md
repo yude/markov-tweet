@@ -26,9 +26,9 @@ $ python3 run.py
 ```
 
 ### Change settings
-#### Remove RT and replies from source
+#### Remove RT, replies and URLs from source
 1. If you already run this bot, please delete `triplets.pkl`.
-1. Run `python3 remove_rt_and_reply.py` on this repository.  
+1. Run `python3 clean.py` on this repository.  
    Warning: Make sure you have `tweets.csv` inside the bot directory!
 1. Rename `tweets.csv` as `tweets.csv.bak`.
 1. Rename `tweets_processed.csv` as `tweets.csv`.

@@ -14,13 +14,12 @@ N = os.environ.get("N")
 
 def read_tweets():
     df = pd.read_csv('tweets.csv')
-#    tweets = df[~df['full_text'].str.contains('RT')]
     tweets = df['full_text']
     return "。".join(tweets)
 
-
 def normalize_text(text):
-    blacklist = '[ @0-9a-zA-Z\|/:%\$&?\(\)~\.=\+\-_「」（）／　：・”“]+'
+    #blacklist = '[ @0-9a-zA-Z\|/:%\$&?\(\)~\.=\+\-_「」（）／　：・”“]+'
+    blacklist = '[ @\|/:%\$&?\(\)~\.=\+\-_「」（）／　：・”“]+'
     return re.sub(blacklist, '', text)
 
 
