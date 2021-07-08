@@ -9,12 +9,23 @@ Automatically generate and tweet sentences like your daily tweets by using marko
 - tweepy
 
 ## Setup
-1. Install Python 3.x, MeCab in the way of your environment.
-1. Run `pip install -r requirements.txt` to install depending Python packages.
+### Docker (Docker Compose)
 1. Download your tweets from Twitter (Download an archive of your data).
 1. Convert `tweets.js` into `tweets.csv` by using [Twitter archive JS to CSV converter](http://tweetjstocsv.glitch.me/).  
 Warning: Don't forget to rename `.csv` file!
-1. Put `tweets.csv` into this repository.
+1. Put `tweets.csv` into `data/` (please create new directory).
+1. Set environment variable in `docker-compose.yml`
+1. Copy `banned.json.sample` as `banned.json`.
+1. Configure banned words in `banned.json` as you like.
+1. Run `docker-compose up -d`
+
+### Manual
+1. Install Python 3.x, MeCab in the way of your environment.
+1. Run `pip install -r requirements.txt` to install depending Python packages.
+1. Download your tweets from Twitter (Download an archive of your data).
+1. Convert `tweets.js` to `tweets.csv` by using [Twitter archive JS to CSV converter](http://tweetjstocsv.glitch.me/).  
+Warning: Don't forget to rename `.csv` file!
+1. Put `tweets.csv` into `app/`.
 1. Copy `.env.sample` as `.env`.
 1. Put your tokens related to Twitter into `.env`. (You can get one from [Developer Portal](https://developer.twitter.com/en/portal/dashboard).)
 1. Copy `banned.json.sample` as `banned.json`.

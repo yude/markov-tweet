@@ -1,0 +1,18 @@
+version: '3'
+services:
+    markov-tweet:
+        restart: always
+        container_name: markov-tweet
+        image: yude/markov-tweet:latest
+        volumes:
+          - "./data/banned.json:/app/banned.json"
+          - "./data/tweets.csv:/app/tweets.csv"
+          - "./data/triplets.pkl:/app/triplets.pkl"
+        environment:
+          # Twitter API related
+          - CK=
+          - CS=
+          - AT=
+          - AS=
+          # Length of sentence
+          - N=1
