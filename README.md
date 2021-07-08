@@ -11,13 +11,12 @@ Automatically generate and tweet sentences like your daily tweets by using marko
 ## Setup
 ### Docker (Docker Compose)
 1. Download your tweets from Twitter (Download an archive of your data).
-1. Convert `tweets.js` into `tweets.csv` by using [Twitter archive JS to CSV converter](http://tweetjstocsv.glitch.me/).  
+1. Convert `tweets.js` to `tweets.csv` by using [Twitter archive JS to CSV converter](http://tweetjstocsv.glitch.me/).  
 Warning: Don't forget to rename `.csv` file!
 1. Put `tweets.csv` into `data/` (please create new directory).
 1. Set environment variable in `docker-compose.yml`
 1. Copy `banned.json.sample` as `banned.json`.
 1. Configure banned words in `banned.json` as you like.
-1. Run `docker-compose up -d`
 
 ### Manual
 1. Install Python 3.x, MeCab in the way of your environment.
@@ -32,8 +31,13 @@ Warning: Don't forget to rename `.csv` file!
 1. Configure banned words in `banned.json` as you like.
 
 ## Run
+### Manual
 ```
-$ python3 run.py
+python3 run.py
+```
+### Docker Compose
+```
+docker-compose up -d
 ```
 
 ### Change settings
@@ -43,15 +47,15 @@ $ python3 run.py
    Warning: Make sure you have `tweets.csv` inside the bot directory!
 1. Rename `tweets.csv` as `tweets.csv.bak`.
 1. Rename `tweets_processed.csv` as `tweets.csv`.
-1. Run `python3 run.py`.
+1. Run the bot.
 
 #### Change the number of sentences
-1. Open `.env` and change the value of `N`.
-1. Run `python3 run.py`.
-
+1. Open `.env` or `docker-compose.yml` and change the value of `N`.
+1. Run the bot.
 
 ### Running this bot regularly
-Use [crontab](https://linuxjm.osdn.jp/html/cron/man5/crontab.5.html) to run this bot regularly.  
+Use [crontab](https://linuxjm.osdn.jp/html/cron/man5/crontab.5.html) to run this bot regularly.\
+If you use Docker image, you don't need to do this (already configured).
 #### Example
 `*/20 * * * * cd /path/to/your/markov-tweet; /usr/bin/python3 /path/to/your/run.py`  
 This definition make this bot run every 20 minutes. (`*:00`, `*:20`, `*:40`)
