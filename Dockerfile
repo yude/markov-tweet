@@ -37,5 +37,12 @@ RUN pip install -r requirements.txt
 # Add script to crontab
 RUN echo '*/20 * * * * cd /app; python run.py' > /var/spool/cron/crontabs/root
 
+# Cleanup
+RUN rm -rf /app/mecab-${MECAB_VERSION}.tar.gz \
+           /app/mecab-ipadic-${IPADIC_VERSION}.tar.gz \
+           /app/mecab-ipadic-${IPADIC_VERSION} \
+           /app/mecab-${MECAB_VERSION} \
+           /app/banned.json.sample
+
 # Run crond
 ENTRYPOINT ["crond", "-f"]
