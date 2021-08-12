@@ -22,11 +22,9 @@ def normalize_text(text):
     blacklist = '[ @\|/:%\$&?\(\)~\.=\+\-_「」（）／　：・”“]+'
     return re.sub(blacklist, '', text)
 
-
 def to_sentences(text):
     delimiter = "。|．|\."
     return re.split(delimiter, text)
-
 
 def to_morphemes(sentence):
     assert isinstance(sentence, str)
@@ -40,7 +38,6 @@ def to_morphemes(sentence):
     ms.append('__E__')
     return ms
 
-
 def to_triplets(morphemes):
     triplets = []
     if len(morphemes) >= 3:
@@ -49,13 +46,11 @@ def to_triplets(morphemes):
             triplets.append(triplet)
     return triplets
 
-
 def flatten_list(ls):
     res = []
     for item in ls:
         res.extend(item)
     return res
-
 
 def create_triplets(text):
     text = normalize_text(text)
@@ -74,7 +69,6 @@ def load_from_pickle(path):
     with open(path, 'rb') as f:
         return pickle.load(f)
 
-
 def load_or_create_triplets():
     path = 'data/triplets.pkl'
     if os.path.isfile(path):
@@ -85,16 +79,13 @@ def load_or_create_triplets():
         save_to_pickle(path, triplets)
         return triplets
 
-
 def matched_triplets(triplets, cond):
     l = len(cond)
     return [triplet for triplet in triplets if triplet[:l] == cond[:l]]
 
-
 def random_triplet(triplets, cond):
     matched = matched_triplets(triplets, cond)
     return random.choice(matched)
-
 
 def create_sentence(triplets):
     ms = []
@@ -104,7 +95,6 @@ def create_sentence(triplets):
         triplet = random_triplet(triplets, triplet[1:3])
         ms.append(triplet[1])
     return ''.join(ms) + ' '
-
 
 def main():
     triplets = load_or_create_triplets()
