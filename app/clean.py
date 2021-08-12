@@ -1,5 +1,5 @@
 import pandas as pd
 
-df = pd.read_csv('tweets.csv')
+df = pd.read_csv('data/tweets.csv')
 df = df[~df['full_text'].str.contains('RT|\@|»|https')]
-df.to_csv('tweets_processed.csv', encoding='utf_8_sig')
+df.to_csv('data/tweets_processed.csv', encoding='utf_8_sig')

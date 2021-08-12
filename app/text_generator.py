@@ -13,7 +13,7 @@ load_dotenv(dotenv_path)
 N = os.environ.get("N")
 
 def read_tweets():
-    df = pd.read_csv('tweets.csv')
+    df = pd.read_csv('data/tweets.csv')
     tweets = df['full_text']
     return "。".join(tweets)
 
@@ -76,7 +76,7 @@ def load_from_pickle(path):
 
 
 def load_or_create_triplets():
-    path = 'triplets.pkl'
+    path = 'data/triplets.pkl'
     if os.path.isfile(path):
         return load_from_pickle(path)
     else:
