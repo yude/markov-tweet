@@ -11,24 +11,31 @@ apk del tzdata
 # Cleanup cache
 RUN rm -rf /var/cache/apk/*
 
-## Install MeCab, IPA dictionary
+## Install MeCab
+ARG _ARM_ARCH="arm-unknown-linux-gnu"
 ENV MECAB_VERSION 0.996
 ENV IPADIC_VERSION 2.7.0-20070801
 ENV mecab_url https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE
 ENV ipadic_url https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM
 RUN curl -SL -o mecab-${MECAB_VERSION}.tar.gz ${mecab_url} \
-&& tar zxf mecab-${MECAB_VERSION}.tar.gz \
-&& cd mecab-${MECAB_VERSION} \
-&& ./configure --enable-utf8-only --with-charset=utf8 \
-&& make \
-&& make install
-# Install IPA dic
+    && tar zxf mecab-${MECAB_VERSION}.tar.gz \
+    && cd mecab-${MECAB_VERSION} \
+    # From https://github.com/gretchi/docker-mecab-neologd-python3
+    && if [ `uname -m` =  "aarch64" ]; then \
+            ./configure --enable-utf8-only --with-charset=utf8 --build=${_ARM_ARCH} --host=${_ARM_ARCH} --target=${_ARM_ARCH}; \
+        else \
+            ./configure --enable-utf8-only --with-charset=utf8; \
+        fi \
+    && make \
+    && make install
+
+# Install IPA dictionary
 RUN curl -SL -o mecab-ipadic-${IPADIC_VERSION}.tar.gz ${ipadic_url} \
-&& tar zxf mecab-ipadic-${IPADIC_VERSION}.tar.gz \
-&& cd mecab-ipadic-${IPADIC_VERSION} \
-&& ./configure --with-charset=utf8 \
-&& make \
-&& make install
+    && tar zxf mecab-ipadic-${IPADIC_VERSION}.tar.gz \
+    && cd mecab-ipadic-${IPADIC_VERSION} \
+    && ./configure --with-charset=utf8 \
+    && make \
+    && make install
 
 ## Python packages
 WORKDIR /app
