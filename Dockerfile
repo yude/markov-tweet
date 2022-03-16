@@ -17,7 +17,7 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 COPY --from=builder /etc/localtime /etc/localtime
 
 ## Install MeCab
-RUN apt update; apt -y install mecab libmecab-dev mecab-ipadic-utf8
+RUN apt update; apt -y install mecab libmecab-dev mecab-ipadic-utf8 cron
 
 # Add script to crontab
 RUN echo '*/20 * * * * root cd /app; python run.py' >> /etc/crontab
