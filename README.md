@@ -40,9 +40,9 @@ python3 run.py
     ```
     version: '3'
     services:
-        yude-vs-robot:
+        markov-tweet:
             restart: always
-            container_name: yude-vs-robot
+            container_name: markov-tweet
             image: ghcr.io/yuderobot/markov-tweet:master
             volumes:
               - "./data:/app/data"
