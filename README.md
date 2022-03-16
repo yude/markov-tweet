@@ -36,9 +36,27 @@ Warning: Don't forget to rename `.csv` file!
 python3 run.py
 ```
 ### Docker Compose
-```
-docker-compose up -d
-```
+## Setup
+1. Create `docker-compose.yml` and paste the below and set your token in this file.
+    ```
+    version: '3'
+    services:
+        yude-vs-robot:
+            restart: always
+            container_name: yude-vs-robot
+            image: ghcr.io/yuderobot/yude-vs-robot:main
+            volumes:
+              - "./data:/app/data"
+            environment:
+              # Twitter API related
+              - CK=
+              - CS=
+              - AT=
+              - AS=
+              # Length of sentence
+              - N=1
+    ```
+2. Run `docker-compose up -d`. To update, run `docker-compose pull` before firing up the container.
 
 ### Change settings
 #### Remove RT, replies and URLs from source

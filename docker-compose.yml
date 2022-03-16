@@ -3,7 +3,8 @@ services:
     markov-tweet:
         restart: always
         container_name: markov-tweet
-        image: yude/markov-tweet:latest
+        image: ghcr.io/yuderobot/markov-tweet:master
+        build: .
         volumes:
           - "./data:/app/data"
         environment:
