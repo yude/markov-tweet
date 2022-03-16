@@ -17,10 +17,14 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 COPY --from=builder /etc/localtime /etc/localtime
 
 ## Install MeCab
-RUN apt update; apt -y install mecab libmecab-dev mecab-ipadic-utf8 cron
+RUN apt update && \
+    apt -y install mecab libmecab-dev mecab-ipadic-utf8 busybox-static && \
+    apt -y clean && apt -y autoclean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Add script to crontab
-RUN echo '*/20 * * * * root cd /app; python run.py' >> /etc/crontab
+RUN mkdir -p /var/spool/cron/crontabs/ && \
+    echo '*/20 * * * * cd /app; python run.py' >> /var/spool/cron/crontabs/root
 
 # Cleanup
 RUN rm -rf /app/banned.json.sample
@@ -29,4 +33,4 @@ RUN rm -rf /app/banned.json.sample
 ADD ./app /app
 
 # Run crond
-ENTRYPOINT ["crond", "-f"]
+ENTRYPOINT ["busybox", "crond", "-f", "-L", "/dev/stderr"]
