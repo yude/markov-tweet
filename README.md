@@ -36,7 +36,6 @@ Warning: Don't forget to rename `.csv` file!
 python3 run.py
 ```
 ### Docker Compose
-## Setup
 1. Create `docker-compose.yml` and paste the below and set your token in this file.
     ```
     version: '3'
