@@ -44,7 +44,7 @@ python3 run.py
         yude-vs-robot:
             restart: always
             container_name: yude-vs-robot
-            image: ghcr.io/yuderobot/yude-vs-robot:main
+            image: ghcr.io/yuderobot/markov-tweet:master
             volumes:
               - "./data:/app/data"
             environment:
