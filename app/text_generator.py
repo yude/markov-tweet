@@ -28,15 +28,14 @@ N = os.environ.get("N")
 
 def read_tweets():
     # Retrieve tweets from user
-    tweets = api.user_timeline(
-        screen_name=str(os.environ.get("SOURCE")),
-        count=200,
-        tweet_mode = 'extended'
-    )
+    tweets = tweepy.Cursor(api.user_timeline, id="yude_jp").items(200)
     # Deep copy source array
-    full_text = copy.copy(tweet.full_text)
+    for tweet in tweets:
+       match = re.search(r'RT|\@|»|https', tweet.text)
+       if match is None:
+          full_text.append(tweet.text)
 
-    return "。".join(tweets)
+    return "。".join(full_text)
 
 def normalize_text(text):
     #blacklist = '[ @0-9a-zA-Z\|/:%\$&?\(\)~\.=\+\-_「」（）／　：・”“]+'
@@ -90,10 +89,10 @@ def load_from_pickle(path):
     with open(path, 'rb') as f:
         return pickle.load(f)
 
-def create_triplets():
+def call_triplets():
     text = read_tweets()
     triplets = create_triplets(text)
-    save_to_pickle(path, triplets)
+    save_to_pickle('data/triplets.pkl', triplets)
     return triplets
 
 def matched_triplets(triplets, cond):
@@ -114,7 +113,7 @@ def create_sentence(triplets):
     return ''.join(ms) + ' '
 
 def run():
-    triplets = create_triplets()
+    triplets = call_triplets()
     n = int(N)
     for i in range(n):
         try:
