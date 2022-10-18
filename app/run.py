@@ -6,6 +6,7 @@ import json
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv
+import text_generator
 
 # Import keys from .env
 dotenv_path = join(dirname(__file__), '.env')
@@ -39,16 +40,15 @@ def remover(result):
 def main():
   # Get original sentences generated from markov-chains
   ## Run text_generator.py to get sentence.
-  cmd = ("python3 text_generator.py")
   ## Put the generated sentence into 'result' variable
-  result = res_cmd(cmd)
-  result = result.decode()
+  result = text_generator.run()
 
   # Remove risky words from result
   result = remover(result)
 
   # Call Twitter API to tweet
   api.update_status(result)
+  print("✅ Tweeted: ", result)
 
 if __name__ == '__main__':
   main()

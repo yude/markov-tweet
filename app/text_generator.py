@@ -96,14 +96,11 @@ def create_sentence(triplets):
         ms.append(triplet[1])
     return ''.join(ms) + ' '
 
-def main():
+def run():
     triplets = load_or_create_triplets()
     n = int(N)
     for i in range(n):
         try:
-            print(create_sentence(triplets), end='')
+            return create_sentence(triplets)
         except:
             pass
-
-if __name__ == '__main__':
-    main()
