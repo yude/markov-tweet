@@ -15,3 +15,5 @@ services:
           - AS=
           # Length of sentence
           - N=1
+          # Source user (enter screen_name)
+          - SOURCE=yude_jp

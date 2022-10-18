@@ -4,3 +4,7 @@ app = "markov-tweet"
 
 [[env]]
     N = "1"
+    SOURCE = "yude_jp"
+
+[build]
+  image = "ghcr.io/yuderobot/markov-tweet:master"

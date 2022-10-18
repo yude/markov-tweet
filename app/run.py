@@ -16,16 +16,10 @@ CS = os.environ.get("CS")
 AT = os.environ.get("AT")
 AS = os.environ.get("AS")
 
-# Generate Twitter objects
+# Generate tweepy objects
 auth = tweepy.OAuthHandler(CK, CS)
 auth.set_access_token(AT, AS)
 api = tweepy.API(auth)
-
-# Run generator
-def res_cmd(cmd):
-  return subprocess.Popen(
-      cmd, stdout=subprocess.PIPE,
-      shell=True).communicate()[0]
 
 # Remove risky words from result
 def remover(result):

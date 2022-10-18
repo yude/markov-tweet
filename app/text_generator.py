@@ -3,18 +3,38 @@ import pandas as pd
 import re
 import pickle
 import random
+import copy
+
 import MeCab
 from os.path import join, dirname
 from dotenv import load_dotenv
 
 tagger = MeCab.Tagger('-Ochasen')
+# Import keys from .env
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
+CK = os.environ.get("CK")
+CS = os.environ.get("CS")
+AT = os.environ.get("AT")
+AS = os.environ.get("AS")
+
+# Generate tweepy objects
+auth = tweepy.OAuthHandler(CK, CS)
+auth.set_access_token(AT, AS)
+api = tweepy.API(auth)
+
 N = os.environ.get("N")
 
 def read_tweets():
-    df = pd.read_csv('data/tweets.csv')
-    tweets = df['full_text']
+    # Retrieve tweets from user
+    tweets = api.user_timeline(
+        screen_name=str(os.environ.get("SOURCE")),
+        count=200,
+        tweet_mode = 'extended'
+    )
+    # Deep copy source array
+    full_text = copy.copy(tweet.full_text)
+
     return "。".join(tweets)
 
 def normalize_text(text):
