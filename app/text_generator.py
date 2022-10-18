@@ -1,16 +1,13 @@
 import os
-import pandas as pd
 import re
+import pandas as pd
 import pickle
-import random
-import copy
 import tweepy
-
 import MeCab
+
 from os.path import join, dirname
 from dotenv import load_dotenv
 
-tagger = MeCab.Tagger('-Ochasen')
 # Import keys from .env
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -18,22 +15,40 @@ CK = os.environ.get("CK")
 CS = os.environ.get("CS")
 AT = os.environ.get("AT")
 AS = os.environ.get("AS")
+N = os.environ.get("N")
 
 # Generate tweepy objects
 auth = tweepy.OAuthHandler(CK, CS)
 auth.set_access_token(AT, AS)
 api = tweepy.API(auth)
 
-N = os.environ.get("N")
+# MeCab thing
+tagger = MeCab.Tagger('-d /usr/lib64/mecab/dic/mecab-ipadic-neologd -Ochasen')
 
 def read_tweets():
+    unwanted_chars = ['\n', '\r', '\u3000', '-', '｜']
+    unwanted_patterns = [re.compile(r'《.*》'), re.compile(r'［＃.*］')]
+
     # Retrieve tweets from user
-    tweets = tweepy.Cursor(api.user_timeline, id="yude_jp").items(200)
+    tweets = api.user_timeline(
+            screen_name=os.environ.get("SOURCE"),
+            count=200
+            )
+
+    full_text = []
+
     # Deep copy source array
     for tweet in tweets:
-       match = re.search(r'RT|\@|»|https', tweet.text)
-       if match is None:
-          full_text.append(tweet.text)
+        text = tweet.text
+
+        match = re.search(r'RT|\@|»|https', text)
+        if match is None:
+            for char in unwanted_chars:
+                text = text.replace(char, '')
+            for pattern in unwanted_patterns:
+                text = re.sub(pattern, '', text)
+
+            full_text.append(text)
 
     return "。".join(full_text)
 
@@ -92,7 +107,6 @@ def load_from_pickle(path):
 def call_triplets():
     text = read_tweets()
     triplets = create_triplets(text)
-    save_to_pickle('data/triplets.pkl', triplets)
     return triplets
 
 def matched_triplets(triplets, cond):
@@ -112,11 +126,19 @@ def create_sentence(triplets):
         ms.append(triplet[1])
     return ''.join(ms) + ' '
 
-def run():
+def generate_sentence():
     triplets = call_triplets()
     n = int(N)
+
+    result = ""
     for i in range(n):
         try:
-            return create_sentence(triplets)
+            result += create_sentence(triplets)
         except:
             pass
+    
+    return result
+    
+
+if __name__ == '__main__':
+    print(generate_sentence())

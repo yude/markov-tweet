@@ -1,12 +1,11 @@
 #-*- coding: utf-8 -*-
 
 import tweepy
-import subprocess
 import json
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv
-import text_generator
+from text_generator import create_sentence
 
 # Import keys from .env
 dotenv_path = join(dirname(__file__), '.env')
@@ -35,13 +34,13 @@ def main():
   # Get original sentences generated from markov-chains
   ## Run text_generator.py to get sentence.
   ## Put the generated sentence into 'result' variable
-  result = text_generator.run()
+  result = create_sentence()
 
   # Remove risky words from result
   result = remover(result)
 
   # Call Twitter API to tweet
-  api.update_status(result)
+  # api.update_status(result)
   print("✅ Tweeted: ", result)
 
 if __name__ == '__main__':

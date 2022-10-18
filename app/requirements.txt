@@ -1,4 +1,6 @@
 python-dotenv
 pandas
 mecab
-tweepy==3.10.0
+tweepy==4.1.0
+markovify
+pandas
