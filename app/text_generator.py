@@ -4,6 +4,7 @@ import re
 import pickle
 import random
 import copy
+import tweepy
 
 import MeCab
 from os.path import join, dirname
