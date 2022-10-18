@@ -89,15 +89,11 @@ def load_from_pickle(path):
     with open(path, 'rb') as f:
         return pickle.load(f)
 
-def load_or_create_triplets():
-    path = 'data/triplets.pkl'
-    if os.path.isfile(path):
-        return load_from_pickle(path)
-    else:
-        text = read_tweets()
-        triplets = create_triplets(text)
-        save_to_pickle(path, triplets)
-        return triplets
+def create_triplets():
+    text = read_tweets()
+    triplets = create_triplets(text)
+    save_to_pickle(path, triplets)
+    return triplets
 
 def matched_triplets(triplets, cond):
     l = len(cond)
@@ -117,7 +113,7 @@ def create_sentence(triplets):
     return ''.join(ms) + ' '
 
 def run():
-    triplets = load_or_create_triplets()
+    triplets = create_triplets()
     n = int(N)
     for i in range(n):
         try:
