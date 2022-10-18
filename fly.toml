@@ -1,0 +1,6 @@
+# fly.toml file generated for markov-tweet on 2022-10-18T19:03:45+09:00
+
+app = "markov-tweet"
+
+[[env]]
+    N = "1"

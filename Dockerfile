@@ -1,6 +1,7 @@
 FROM python:3.9.10-bullseye AS builder
 ADD ./app/requirements.txt /app/
 
+
 # Set timezone
 RUN apt update; apt -y install tzdata && \
 cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
@@ -26,11 +27,11 @@ RUN apt update && \
 RUN mkdir -p /var/spool/cron/crontabs/ && \
     echo '*/20 * * * * cd /app; python run.py' >> /var/spool/cron/crontabs/root
 
-# Cleanup
-RUN rm -rf /app/banned.json.sample
-
 # Load app
 ADD ./app /app
+
+# Cleanup
+RUN rm -rf /app/banned.json.sample /app/.env.sample
 
 # Run crond
 ENTRYPOINT ["busybox", "crond", "-f", "-L", "/dev/stderr"]
